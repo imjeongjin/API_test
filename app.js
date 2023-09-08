@@ -141,8 +141,11 @@ app.post("/users/login", async(req, res) =>{
             throw error
         }
 
+        const token = jwt.sign({id : 'id'}, process.env.TYPEORM_JWT)
+
         return res.status(201).json({
-            "message" : "LOGIN_SUCESS"
+            "message" : "LOGIN_SUCESS",
+            "accessToken" : token
         })
     } catch (error) {
         console.log(error)
